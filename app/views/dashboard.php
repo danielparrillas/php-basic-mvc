@@ -80,6 +80,55 @@ require_once __DIR__ . '/components/header.php';
 			</form>
 		</article>
 	</dialog>
+	<dialog id="edit-producto-dialog">
+		<article>
+			<header>
+				<button aria-label="Close" rel="prev"></button>
+				<p>
+					<strong>Editar Producto</strong>
+				</p>
+			</header>
+			<form action="#" method="POST" id="editar-producto-form">
+				<input type="hidden" name="_method" value="PUT">
+				<fieldset>
+					<label>
+						Nombre del producto
+						<input
+							type="text"
+							name="name"
+							placeholder="Nombre del producto" required />
+					</label>
+					<label>
+						Precio
+						<input
+							type="number"
+							name="price"
+							placeholder="Precio del producto"
+							step="0.01"
+							min="0.01"
+							required />
+					</label>
+					<label>
+						Descripción
+						<textarea
+							name="description"
+							placeholder="Descripción del producto" required></textarea>
+					</label>
+					<label>
+						Categoría
+						<select name="category_id" required>
+							<?php foreach ($categories as $category) : ?>
+								<option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
+							<?php endforeach; ?>
+						</select>
+					</label>
+				</fieldset>
+				<input
+					type="submit"
+					value="Guardar" />
+			</form>
+		</article>
+	</dialog>
 	<dialog id="delete-producto-dialog">
 		<article>
 			<header>
@@ -125,10 +174,15 @@ require_once __DIR__ . '/components/header.php';
 	const products = <?php echo json_encode($products); ?>;
 	const deleteDialog = document.querySelector('#delete-producto-dialog');
 	const deleteForm = document.querySelector('#delete-producto-form');
+	const editDialog = document.querySelector('#edit-producto-dialog');
+	const editForm = document.querySelector('#editar-producto-form');
 
 	deleteDialog.querySelector('button').addEventListener('click', () => {
 		deleteDialog.close();
+	});
 
+	editDialog.querySelector('button').addEventListener('click', () => {
+		editDialog.close();
 	});
 
 	// asociar categorias con productos
@@ -161,9 +215,10 @@ require_once __DIR__ . '/components/header.php';
 		categoryCell.textContent = product.category?.name;
 
 		const actionsCell = document.createElement('td');
+		actionsCell.classList.add('flex', 'gap-2', 'h-full', 'flex-col');
 
 		const deleteButton = document.createElement('button');
-		deleteButton.textContent = 'X';
+		deleteButton.textContent = 'Eliminar';
 		deleteButton.classList.add('p-1', 'bg-red-500', 'text-white', 'rounded-md', 'mr-2', 'text-xs', 'opacity-0', 'group-hover:opacity-100');
 		deleteButton.addEventListener('click', () => {
 			deleteDialog.showModal();
@@ -174,10 +229,17 @@ require_once __DIR__ . '/components/header.php';
 
 		const editButton = document.createElement('button');
 		editButton.textContent = 'Editar';
-		editButton.classList.add('p-2', 'bg-blue-500', 'text-white', 'rounded-md', 'mr-2');
+		editButton.classList.add('p-1', 'bg-yellow-500', 'text-white', 'rounded-md', 'mr-2', 'text-xs', 'opacity-0', 'group-hover:opacity-100');
 		editButton.addEventListener('click', () => {
-
+			editDialog.showModal();
+			editForm.action = `/productos?id=${product.id}`;
+			editForm.querySelector('input[name=name]').value = product.name;
+			editForm.querySelector('input[name=price]').value = product.price;
+			editForm.querySelector('textarea[name=description]').value = product.description;
+			editForm.querySelector('select[name=category_id]').value = product.category_id;
 		});
+
+		actionsCell.appendChild(editButton);
 
 		// Agregar las celdas a la fila
 		row.appendChild(nameCell);

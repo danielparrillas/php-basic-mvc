@@ -54,7 +54,7 @@ class ProductController
 			$this->product->description = $_POST['description'];
 
 			if ($this->product->update()) {
-				header('Location: /products/' . $id); // Redirigir al producto actualizado
+				header('Location: /dashboard'); // Redirigir al producto actualizado
 			} else {
 				echo "Error al actualizar el producto";
 			}

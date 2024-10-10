@@ -57,6 +57,9 @@ switch ($uri) {
 				if ($_POST['_method'] === 'DELETE') {
 					$id = $_GET['id'];
 					$productController->delete($id);
+				} else if ($_POST['_method'] === 'PUT') {
+					$id = $_GET['id'];
+					$productController->update($id);
 				} else
 					$productController->create();
 				break;
