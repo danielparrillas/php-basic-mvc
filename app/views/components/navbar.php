@@ -5,7 +5,7 @@ $userName = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : null;
 ?>
 
 <header class="bg-white shadow sticky top-0">
-	<nav class="container mx-auto px-6 py-3">
+	<nav class="container mx-auto px-6 py-0">
 		<div class="flex w-full justify-between">
 			<div class="text-xl font-bold text-gray-800">IGF</div>
 			<div class="hidden md:flex space-x-6">

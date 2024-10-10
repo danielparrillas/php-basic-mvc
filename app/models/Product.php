@@ -24,7 +24,7 @@ class Product
 		$stmt = $this->conn->prepare($query);
 		$stmt->execute();
 
-		return $stmt;
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 
 	// Método para obtener un producto por su ID

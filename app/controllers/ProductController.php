@@ -30,19 +30,15 @@ class ProductController
 	// Método para crear un nuevo producto (manejo de formulario)
 	public function create()
 	{
-		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-			$this->product->category_id = $_POST['category_id'];
-			$this->product->name = $_POST['name'];
-			$this->product->price = $_POST['price'];
-			$this->product->description = $_POST['description'];
+		$this->product->category_id = $_POST['category_id'];
+		$this->product->name = $_POST['name'];
+		$this->product->price = $_POST['price'];
+		$this->product->description = $_POST['description'];
 
-			if ($this->product->create()) {
-				header('Location: /products'); // Redirigir a la lista de productos
-			} else {
-				echo "Error al crear el producto";
-			}
+		if ($this->product->create()) {
+			header('Location: /dashboard');
 		} else {
-			require_once 'app/views/products/create.php'; // Vista para el formulario de creación
+			echo "Error al crear el producto";
 		}
 	}
 
