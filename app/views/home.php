@@ -1,5 +1,6 @@
 <?php
 $title = 'Home';
+$role = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : null;
 require_once __DIR__ . '/components/header.php';
 ?>
 
@@ -10,7 +11,7 @@ require_once __DIR__ . '/components/header.php';
 		<div class="container mx-auto px-6 text-center">
 			<h1 class="text-4xl md:text-6xl font-bold mb-4">MVC</h1>
 			<p class="text-xl md:text-2xl mb-8 text-gray-100">Modelo Vista Controlador</p>
-			<a href="<?= $isLogged ? '/dashboard' : '/login' ?>" class="bg-white text-indigo-600 font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition duration-300 inline-flex items-center no-underline">
+			<a href="<?= $isLogged ? ($role === 'admin' ? '/dashboard' : '/productos') : '/login' ?>" class="bg-white text-indigo-600 font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition duration-300 inline-flex items-center no-underline">
 				Empezar
 				<i class="fas fa-arrow-right ml-2"></i>
 			</a>
