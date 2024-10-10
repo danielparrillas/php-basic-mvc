@@ -83,6 +83,14 @@ The project follows the MVC architecture:
 php ./database/seeders/user_seeder.php
 ```
 
+```bash
+php ./database/seeders/category_seeder.php
+```
+
+```bash
+php ./database/seeders/product_seeder.php
+```
+
 ## License
 
 This project is licensed under the MIT License.
