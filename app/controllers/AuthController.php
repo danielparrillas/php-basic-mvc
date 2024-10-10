@@ -32,7 +32,9 @@ class AuthController
 			session_start();
 			$_SESSION['user_id'] = $loggedInUser['id'];
 			$_SESSION['user_email'] = $loggedInUser['email'];
-			header('Location: /dashboard');
+			$_SESSION['user_name'] = $loggedInUser['name'];
+			$_SESSION['user_role'] = $loggedInUser['role'];
+			header('Location: /');
 		} else {
 			$error = 'Invalid login credentials';
 			require_once __DIR__ . '/../views/login.php';

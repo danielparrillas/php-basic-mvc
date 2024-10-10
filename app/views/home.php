@@ -4,14 +4,12 @@ require_once __DIR__ . '/components/header.php';
 ?>
 
 <body class="bg-gray-50">
-	<header class="bg-white shadow sticky top-0">
-		<?php require_once __DIR__ . '/components/navbar.php'; ?>
-	</header>
+	<?php require_once __DIR__ . '/components/navbar.php'; ?>
 
 	<section class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-20">
 		<div class="container mx-auto px-6 text-center">
 			<h1 class="text-4xl md:text-6xl font-bold mb-4">MVC</h1>
-			<p class="text-xl md:text-2xl mb-8">Modelo Vista Controlador</p>
+			<p class="text-xl md:text-2xl mb-8 text-gray-100">Modelo Vista Controlador</p>
 			<a href="<?= $isLogged ? '/dashboard' : '/login' ?>" class="bg-white text-indigo-600 font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition duration-300 inline-flex items-center no-underline">
 				Empezar
 				<i class="fas fa-arrow-right ml-2"></i>
@@ -27,7 +25,7 @@ require_once __DIR__ . '/components/header.php';
 					<div class="text-indigo-500 mb-4">
 						<i class="fas fa-bolt text-4xl"></i>
 					</div>
-					<h3 class="text-xl font-semibold mb-2">Inicio de sesión</h3>
+					<h3 class="text-xl font-semibold mb-2 text-gray-600">Inicio de sesión</h3>
 					<p class="text-gray-600">
 						Permite a los usuarios iniciar sesión en la aplicación.
 					</p>
@@ -36,7 +34,7 @@ require_once __DIR__ . '/components/header.php';
 					<div class="text-indigo-500 mb-4">
 						<i class="fas fa-shield-alt text-4xl"></i>
 					</div>
-					<h3 class="text-xl font-semibold mb-2">Productos</h3>
+					<h3 class="text-xl font-semibold mb-2 text-gray-600">Productos</h3>
 					<p class="text-gray-600">
 						Permite a los usuarios ver, agregar, editar y eliminar productos.
 					</p>
@@ -45,7 +43,7 @@ require_once __DIR__ . '/components/header.php';
 					<div class="text-indigo-500 mb-4">
 						<i class="fas fa-smile text-4xl"></i>
 					</div>
-					<h3 class="text-xl font-semibold mb-2">
+					<h3 class="text-xl font-semibold mb-2 text-gray-600">
 						Interfaz intuitiva
 					</h3>
 					<p class="text-gray-600">

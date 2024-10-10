@@ -4,9 +4,7 @@ require_once __DIR__ . '/components/header.php';
 ?>
 
 <body>
-	<header class="shadow-sm sticky top-0 bg-gray-50">
-		<?php require_once __DIR__ . '/components/navbar.php'; ?>
-	</header>
+	<?php require_once __DIR__ . '/components/navbar.php'; ?>
 	<main class="h-screen flex items-center justify-center">
 		<section class="w-96">
 			<h2 class="text-center">Dashboard</h2>

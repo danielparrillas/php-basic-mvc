@@ -1,12 +1,8 @@
 <?php
+session_start();
 
-function auth()
-{
-	session_start();
-	if (!isset($_SESSION['user_id'])) {
-		header('Location: /login');
-	}
-}
+require_once __DIR__ . '/../middlewares/authMiddleware.php';
+require_once __DIR__ . '/../middlewares/roleMiddleware.php';
 
 switch ($_SERVER['REQUEST_URI']) {
 	case '/':
@@ -14,6 +10,7 @@ switch ($_SERVER['REQUEST_URI']) {
 		break;
 	case '/dashboard':
 		auth();
+		role('admin');
 		require_once __DIR__ . '/../app/views/dashboard.php';
 		break;
 	case '/login':
