@@ -1,18 +1,19 @@
 <?php
-$title = 'Login';
+$title = 'Resiter';
 require_once __DIR__ . '/components/header.php';
 ?>
 
 <body class="h-screen flex items-center justify-center">
 	<main class="w-96">
-		<h2 class="text-center">Login</h2>
-		<form action="/login" method="POST">
+		<h2 class="text-center">Register</h2>
+		<form action="/register" method="POST">
+			<input type="text" name="name" placeholder="Name" required>
 			<input type="email" name="email" placeholder="Email" required>
 			<input type="password" name="password" placeholder="Password" required>
-			<button type="submit">Login</button>
+			<button type="submit">Registrarse</button>
 		</form>
 		<p class="text-center">
-			¿No tienes una cuenta? <a href="/register" class="text-blue-500">Registrarse</a>
+			Ya tienes una cuenta? <a href="/login" class="text-blue-500">Iniciar sesión</a>
 		</p>
 		<p class="text-center">
 			<a href="/" class="text-blue-500">Volver al inicio</a>

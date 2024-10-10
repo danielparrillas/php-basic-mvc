@@ -10,11 +10,11 @@ function auth()
 
 switch ($_SERVER['REQUEST_URI']) {
 	case '/':
-		echo 'Home';
+		require_once __DIR__ . '/../app/views/home.php';
 		break;
 	case '/dashboard':
 		auth();
-		echo 'Dashboard';
+		require_once __DIR__ . '/../app/views/dashboard.php';
 		break;
 	case '/login':
 		require_once __DIR__ . '/../app/controllers/AuthController.php';
@@ -28,8 +28,25 @@ switch ($_SERVER['REQUEST_URI']) {
 				break;
 		}
 		break;
+	case '/logout':
+		require_once __DIR__ . '/../app/controllers/AuthController.php';
+		$authController = new AuthController();
+		$authController->logout();
+		break;
+	case '/register':
+		switch ($_SERVER['REQUEST_METHOD']) {
+			case 'GET':
+				require_once __DIR__ . '/../app/views/register.php';
+				break;
+			case 'POST':
+				require_once __DIR__ . '/../app/controllers/AuthController.php';
+				$authController = new AuthController();
+				$authController->register();
+				break;
+		}
+		break;
 	default:
 		http_response_code(404);
-		echo '404 Not Found';
+		require_once __DIR__ . '/../app/views/404.php';
 		break;
 }

@@ -38,4 +38,34 @@ class AuthController
 			require_once __DIR__ . '/../views/login.php';
 		}
 	}
+
+	public function register()
+	{
+		$name = $_POST['name'];
+		$email = $_POST['email'];
+		$password = $_POST['password'];
+		$role = 'user';
+
+		require_once __DIR__ . '/../models/User.php';
+		$user = new User($this->db);
+		$user->name = $name;
+		$user->email = $email;
+		$user->password = $password;
+		$user->role = $role;
+
+		if ($user->register()) {
+			header('Location: /login');
+		} else {
+			$error = 'Error registering user';
+			require_once __DIR__ . '/../views/register.php';
+		}
+	}
+
+	public function logout()
+	{
+		session_start();
+		session_unset();
+		session_destroy();
+		header('Location: /');
+	}
 }
