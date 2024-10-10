@@ -4,7 +4,9 @@ session_start();
 require_once __DIR__ . '/../middlewares/authMiddleware.php';
 require_once __DIR__ . '/../middlewares/roleMiddleware.php';
 
-switch ($_SERVER['REQUEST_URI']) {
+$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
+switch ($uri) {
 	case '/':
 		require_once __DIR__ . '/../app/views/home.php';
 		break;
@@ -52,7 +54,15 @@ switch ($_SERVER['REQUEST_URI']) {
 				$productController->index();
 				break;
 			case 'POST':
-				$productController->create();
+				if ($_POST['_method'] === 'DELETE') {
+					$id = $_GET['id'];
+					$productController->delete($id);
+				} else
+					$productController->create();
+				break;
+			case 'DELETE':
+				$id = $_GET['id'];
+				$productController->delete($id);
 				break;
 		}
 		break;

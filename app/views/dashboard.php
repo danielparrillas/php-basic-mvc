@@ -22,6 +22,7 @@ require_once __DIR__ . '/components/header.php';
 						<th class="bg-gray-500/20">Precio</th>
 						<th class="bg-gray-500/20">Descripción</th>
 						<th class="rounded-tr-md bg-gray-500/20">Categoría</th>
+						<th class="rounded-bl-md bg-gray-500/20">Acciones</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -75,11 +76,35 @@ require_once __DIR__ . '/components/header.php';
 
 				<input
 					type="submit"
-					value="Subscribe" />
+					value="Guardar" />
+			</form>
+		</article>
+	</dialog>
+	<dialog id="delete-producto-dialog">
+		<article>
+			<header>
+				<button aria-label="Close" rel="prev"></button>
+				<p>
+					<strong>Eliminar Producto</strong>
+				</p>
+			</header>
+			<form action="#" method="POST" id="delete-producto-form">
+				<input type="hidden" name="_method" value="DELETE">
+				<fieldset>
+					<label>
+						¿Estás seguro de que deseas eliminar este producto?
+					</label>
+				</fieldset>
+				<input
+					type="submit"
+					value="Eliminar" />
 			</form>
 		</article>
 	</dialog>
 </body>
+<script>
+
+</script>
 <script>
 	const newProductDialog = document.querySelector('#new-producto-dialog');
 	const newProductButton = document.querySelector('#new-product-button');
@@ -90,12 +115,21 @@ require_once __DIR__ . '/components/header.php';
 
 	newProductDialog.querySelector('button').addEventListener('click', () => {
 		newProductDialog.close();
+		deleteForm.action = "#";
+
 	});
 </script>
 
 <script>
 	const categories = <?php echo json_encode($categories); ?>;
 	const products = <?php echo json_encode($products); ?>;
+	const deleteDialog = document.querySelector('#delete-producto-dialog');
+	const deleteForm = document.querySelector('#delete-producto-form');
+
+	deleteDialog.querySelector('button').addEventListener('click', () => {
+		deleteDialog.close();
+
+	});
 
 	// asociar categorias con productos
 	products.forEach(product => {
@@ -126,11 +160,31 @@ require_once __DIR__ . '/components/header.php';
 		const categoryCell = document.createElement('td');
 		categoryCell.textContent = product.category?.name;
 
+		const actionsCell = document.createElement('td');
+
+		const deleteButton = document.createElement('button');
+		deleteButton.textContent = 'X';
+		deleteButton.classList.add('p-1', 'bg-red-500', 'text-white', 'rounded-md', 'mr-2', 'text-xs', 'opacity-0', 'group-hover:opacity-100');
+		deleteButton.addEventListener('click', () => {
+			deleteDialog.showModal();
+			deleteForm.action = `/productos?id=${product.id}`;
+		});
+
+		actionsCell.appendChild(deleteButton);
+
+		const editButton = document.createElement('button');
+		editButton.textContent = 'Editar';
+		editButton.classList.add('p-2', 'bg-blue-500', 'text-white', 'rounded-md', 'mr-2');
+		editButton.addEventListener('click', () => {
+
+		});
+
 		// Agregar las celdas a la fila
 		row.appendChild(nameCell);
 		row.appendChild(priceCell);
 		row.appendChild(descriptionCell);
 		row.appendChild(categoryCell);
+		row.appendChild(actionsCell);
 
 		// Agregar la fila a la tabla
 		productsTableBody.appendChild(row);

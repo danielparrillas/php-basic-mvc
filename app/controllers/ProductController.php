@@ -70,7 +70,7 @@ class ProductController
 		$this->product->id = $id;
 
 		if ($this->product->delete()) {
-			header('Location: /products'); // Redirigir a la lista de productos
+			header('Location: /dashboard');
 		} else {
 			echo "Error al eliminar el producto";
 		}
