@@ -26,6 +26,17 @@ class Order
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 
+	// Método para obtener todas las órdenes de un usuario
+	public function getByUserId()
+	{
+		$query = 'SELECT * FROM ' . $this->table . ' WHERE user_id = :user_id ORDER BY created_at DESC';
+		$stmt = $this->conn->prepare($query);
+		$stmt->bindParam(':user_id', $this->user_id);
+		$stmt->execute();
+
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+
 	// Método para obtener una orden por su ID
 	public function getById()
 	{
@@ -64,6 +75,22 @@ class Order
 		// Bind de los parámetros
 		$stmt->bindParam(':user_id', $this->user_id);
 		$stmt->bindParam(':total', $this->total);
+		$stmt->bindParam(':status', $this->status);
+		$stmt->bindParam(':id', $this->id);
+
+		if ($stmt->execute()) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public function cancelar()
+	{
+		$query = 'UPDATE ' . $this->table . ' SET status = :status WHERE id = :id';
+		$stmt = $this->conn->prepare($query);
+
+		// Bind de los parámetros
 		$stmt->bindParam(':status', $this->status);
 		$stmt->bindParam(':id', $this->id);
 

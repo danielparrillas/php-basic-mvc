@@ -14,7 +14,8 @@ $userName = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : null;
 					<a href="/dashboard" class="text-gray-600 hover:text-gray-900 no-underline">Dashboard</a>
 				<?php endif; ?>
 				<?php if ($isLogged) : ?>
-					<a href="/productos" class="text-gray-600 hover:text-gray-900 no-underline">Productos</a>
+					<a href="/productos" class="text-gray-600 hover:text-gray-900 no-underline">Tienda</a>
+					<a href="/orders" class="text-gray-600 hover:text-gray-900 no-underline">Ordenes</a>
 					<a href="/logout" class="text-gray-600 hover:text-gray-900 no-underline">Logout</a>
 				<?php else : ?>
 					<a href="/login" class="text-gray-600 hover:text-gray-900 no-underline">Login</a>
@@ -34,7 +35,8 @@ $userName = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : null;
 						<a href="/dashboard" class="block py-2 text-gray-600 hover:text-gray-900 no-underline">Dashboard</a>
 					<?php endif; ?>
 					<?php if ($isLogged) : ?>
-						<a href="/products" class="block py-2 text-gray-600 hover:text-gray-900 no-underline">Productos</a>
+						<a href="/products" class="block py-2 text-gray-600 hover:text-gray-900 no-underline">Tienda</a>
+						<a href="/orders" class="block py-2 text-gray-600 hover:text-gray-900 no-underline">Ordenes</a>
 						<a href="/logout" class="block py-2 text-gray-600 hover:text-gray-900 no-underline">Logout</a>
 					<?php else : ?>
 						<a href="/login" class="block py-2 text-gray-600 hover:text-gray-900 no-underline">Login</a>

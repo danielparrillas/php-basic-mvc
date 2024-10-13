@@ -69,6 +69,21 @@ switch ($uri) {
 				break;
 		}
 		break;
+	case '/orders':
+		require_once __DIR__ . '/../app/controllers/OrderController.php';
+		$orderController = new OrderController();
+		switch ($_SERVER['REQUEST_METHOD']) {
+			case 'POST':
+				if ($_POST['_method'] === 'DELETE') {
+					$orderController->delete();
+				} else
+					$orderController->create();
+				break;
+			case 'GET':
+				$orderController->index();
+				break;
+		}
+		break;
 	default:
 		http_response_code(404);
 		require_once __DIR__ . '/../app/views/404.php';
