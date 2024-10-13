@@ -8,14 +8,13 @@ $db = $database->connect();
 
 $category = new Category($db);
 
-// Array de categorías para el seeder
 $categories = [
-	['id' => 1, 'name' => 'Electrónica'],
-	['id' => 2, 'name' => 'Dispositivos Móviles'],
-	['id' => 3, 'name' => 'Accesorios'],
-	['id' => 4, 'name' => 'Fotografía'],
-	['id' => 5, 'name' => 'Gaming'],
-	['id' => 6, 'name' => 'Hogar y Oficina']
+	['id' => 1, 'name' => 'Analgésico'],
+	['id' => 2, 'name' => 'Analéptico'],
+	['id' => 3, 'name' => 'Anestésico'],
+	['id' => 4, 'name' => 'Antiácido'],
+	['id' => 5, 'name' => 'Antidepresivo'],
+	['id' => 6, 'name' => 'Antibiótico'],
 ];
 
 // Insertar las categorías

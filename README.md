@@ -27,72 +27,60 @@ The project follows the MVC architecture:
         web.php
 ```
 
-## Installation
+## Instalación
 
-1. **Clone the repository:**
-   ```
-   git clone https://github.com/your-repo/login-mvc.git
-   ```
+1. **Clonar el repositorio:**
 
-2. **Navigate to the project directory:**
-   ```
-   cd login-mvc
+   ```bash
+   gh repo clone danielparrillas/php-basic-mvc
    ```
 
-3. **Configure the database:**
-   Edit the `config/database.php` file with your database credentials.
+2. **Navegar al directorio del proyecto:**
 
-4. **Create the `users` table:**
-   Run the following SQL query in your database:
-   ```sql
-   CREATE TABLE users (
-       id INT AUTO_INCREMENT PRIMARY KEY,
-       email VARCHAR(100) NOT NULL,
-       password VARCHAR(255) NOT NULL
-   );
+   ```bash
+   cd php-basic-mvc
    ```
 
-5. **Start the PHP server:**
-   ```
+3. **Configurar la base de datos:**
+    - Edita el archivo config/database.php con las siguientes variables:
+
+    - $host: Dirección del servidor de base de datos (por ejemplo, '127.0.0.1').
+
+    - $db_name: Nombre de la base de datos (por ejemplo, 'php-basic-mvc').
+
+    - $username: Nombre de usuario de la base de datos (por ejemplo, 'root').
+
+    - $password: Contraseña de la base de datos (por ejemplo, 'tu_contraseña').
+
+    > Para la conexión de la base de datos, puedes utilizar uno de los siguientes métodos, dependiendo de la base de datos que desees utilizar. Renombra el método elegido a connect() para definir cuál será la conexión principal:
+
+    - _connect(): Realiza la conexión usando MySQL con las credenciales proporcionadas. Renombra este método a connect() si deseas utilizar MySQL.
+
+    - connect(): Realiza la conexión usando SQLite. Cambia el DSN para conectarse a un archivo de base de datos SQLite (example.db). Renombra este método a connect() si deseas utilizar SQLite.
+
+4. Crear las tablas necesarias ejecutando las migraciones: Para crear las tablas necesarias, ejecuta los scripts SQL de las migraciones correspondientes:
+
+    - Mysql: Ejecuta el script de migración de MySQL en la carpeta config/migrations/mysql.
+    - SQLite: Ejecuta el script de migración de SQLite en la carpeta config/migrations/sqlite.
+    > Si deseas utilizar SQLite, asegúrate de que el archivo de base de datos (por ejemplo, example.db) esté en la carpeta config/migrations/sqlite. Si no existe, crea un archivo de base de datos SQLite en esa carpeta. `sqlite3 ./database/example.db`
+
+    ```bash	
+
+    > Opcionalmente puedes ejecutar los seeders para poblar la base de datos con datos de prueba.
+    
+    ```bash
+    php ./database/seeders/user_seeder.php
+    php ./database/seeders/category_seeder.php
+    php ./database/seeders/product_seeder.php
+    ```
+
+
+5. **Iniciar el servidor PHP:**
+
+   ```bash
    php -S localhost:8000 -t public
    ```
 
-## Usage
+## Licencia
 
-- Navigate to `http://localhost:8000/login` to access the login form.
-- Use the form to log in with your email and password.
-- If login is successful, the user is redirected to the dashboard.
-
-## Important Files
-
-- **config/database.php**: Contains the database connection settings.
-- **app/models/User.php**: The User model that handles login logic.
-- **app/controllers/AuthController.php**: The controller that manages authentication actions.
-- **app/views/login.php**: The login form view.
-- **routes/web.php**: Defines the routes for login actions.
-
-## Future Improvements
-
-- Password recovery functionality.
-- Registration system.
-- User roles and permissions.
-
-## Correr seeders
-
-```bash
-php ./database/seeders/user_seeder.php
-```
-
-```bash
-php ./database/seeders/category_seeder.php
-```
-
-```bash
-php ./database/seeders/product_seeder.php
-```
-
-## License
-
-This project is licensed under the MIT License.
-```
-
+Este proyecto está licenciado bajo la Licencia MIT.

@@ -12,11 +12,7 @@ $user = new User($db);
 // Array de usuarios para el seeder
 $users = [
 	['email' => 'admin@example.com', 'password' => '1234', 'name' => 'Administrador', 'role' => 'admin'],
-	['email' => 'john.doe@example.com', 'password' => '1234', 'name' => 'John Doe', 'role' => 'user'],
-	['email' => 'jane.smith@example.com', 'password' => '1234', 'name' => 'Jane Smith', 'role' => 'user'],
-	['email' => 'emily.johnson@example.com', 'password' => '1234', 'name' => 'Emily Johnson', 'role' => 'user'],
-	['email' => 'michael.brown@example.com', 'password' => '1234', 'name' => 'Michael Brown', 'role' => 'user'],
-	['email' => 'admin2@example.com', 'password' => '1234', 'name' => 'Super Admin', 'role' => 'admin']
+	['email' => 'ps19005@ues.edu.sv', 'password' => '1234', 'name' => 'John Doe', 'role' => 'user'],
 ];
 
 // Registrar los usuarios
