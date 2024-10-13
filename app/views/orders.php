@@ -40,11 +40,13 @@ require_once __DIR__ . '/components/header.php';
 							</td>
 							<td>$<?= $order['total'] ?></td>
 							<td>
-								<form action="/orders" method="POST">
-									<input type="hidden" name="_method" value="DELETE">
-									<input type="hidden" name="order_id" value="<?= $order['id'] ?>">
-									<button type="submit" class="bg-red-500 text-white px-2 py-1 rounded border-none">Eliminar</button>
-								</form>
+								<?php if ($order['status'] === 'pending') : ?>
+									<form action="/orders" method="POST">
+										<input type="hidden" name="_method" value="DELETE">
+										<input type="hidden" name="order_id" value="<?= $order['id'] ?>">
+										<button type="submit" class="bg-red-500 text-white px-2 py-1 rounded border-none">Eliminar</button>
+									</form>
+								<?php endif; ?>
 							</td>
 						</tr>
 					<?php endforeach; ?>

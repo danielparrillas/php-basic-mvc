@@ -1,8 +1,9 @@
 <?php
-class User
+require_once __DIR__ . '/Model.php';
+
+class User extends Model
 {
-	private $conn;
-	private $table = 'users';
+	protected $table = 'users';
 	public $name;
 	public $email;
 	public $password;
@@ -10,7 +11,7 @@ class User
 
 	public function __construct($db)
 	{
-		$this->conn = $db;
+		parent::__construct($db);
 	}
 
 	public function login()

@@ -21,8 +21,8 @@ require_once __DIR__ . '/components/header.php';
 						<th class="rounded-tl-md bg-gray-500/20">Nombre del Producto</th>
 						<th class="bg-gray-500/20">Precio</th>
 						<th class="bg-gray-500/20">Descripción</th>
-						<th class="rounded-tr-md bg-gray-500/20">Categoría</th>
-						<th class="rounded-bl-md bg-gray-500/20">Acciones</th>
+						<th class="bg-gray-500/20">Categoría</th>
+						<th class="rounded-tr-md bg-gray-500/20">Acciones</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -206,7 +206,7 @@ require_once __DIR__ . '/components/header.php';
 		nameCell.textContent = product.name;
 
 		const priceCell = document.createElement('td');
-		priceCell.textContent = '$' + product.price.toFixed(2);
+		priceCell.textContent = '$' + Number(product.price).toFixed(2);
 
 		const descriptionCell = document.createElement('td');
 		descriptionCell.textContent = product.description;
@@ -215,21 +215,23 @@ require_once __DIR__ . '/components/header.php';
 		categoryCell.textContent = product.category?.name;
 
 		const actionsCell = document.createElement('td');
-		actionsCell.classList.add('flex', 'gap-2', 'h-full', 'flex-col');
+		const containerActions = document.createElement('div');
+		containerActions.classList.add('flex', 'gap-2', 'h-full', 'flex-col');
+		actionsCell.appendChild(containerActions);
 
 		const deleteButton = document.createElement('button');
 		deleteButton.textContent = 'Eliminar';
-		deleteButton.classList.add('p-1', 'bg-red-500', 'text-white', 'rounded-md', 'mr-2', 'text-xs', 'opacity-0', 'group-hover:opacity-100');
+		deleteButton.classList.add('p-1', 'bg-red-500', 'text-white', 'rounded-md', 'mr-2', 'text-xs', 'opacity-0', 'group-hover:opacity-100', 'border-none');
 		deleteButton.addEventListener('click', () => {
 			deleteDialog.showModal();
 			deleteForm.action = `/productos?id=${product.id}`;
 		});
 
-		actionsCell.appendChild(deleteButton);
+		containerActions.appendChild(deleteButton);
 
 		const editButton = document.createElement('button');
 		editButton.textContent = 'Editar';
-		editButton.classList.add('p-1', 'bg-yellow-500', 'text-white', 'rounded-md', 'mr-2', 'text-xs', 'opacity-0', 'group-hover:opacity-100');
+		editButton.classList.add('p-1', 'bg-yellow-500', 'text-white', 'rounded-md', 'mr-2', 'text-xs', 'opacity-0', 'group-hover:opacity-100', 'border-none');
 		editButton.addEventListener('click', () => {
 			editDialog.showModal();
 			editForm.action = `/productos?id=${product.id}`;
@@ -239,7 +241,7 @@ require_once __DIR__ . '/components/header.php';
 			editForm.querySelector('select[name=category_id]').value = product.category_id;
 		});
 
-		actionsCell.appendChild(editButton);
+		containerActions.appendChild(editButton);
 
 		// Agregar las celdas a la fila
 		row.appendChild(nameCell);

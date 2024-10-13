@@ -1,12 +1,11 @@
 <?php
+require_once __DIR__ . '/Controller.php';
 
-class DashboardController
+class DashboardController extends Controller
 {
-	private $db;
-
 	public function __construct()
 	{
-		$this->db = (new Database())->connect();
+		parent::__construct();
 	}
 
 	public function showDashboard()

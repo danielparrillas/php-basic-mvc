@@ -1,14 +1,14 @@
 <?php
+require_once __DIR__ . '/Controller.php';
 require_once __DIR__ . '/../models/Product.php';
 
-class ProductController
+class ProductController extends Controller
 {
-	private $db;
 	private $product;
 
 	public function __construct()
 	{
-		$this->db = (new Database())->connect();
+		parent::__construct();
 		$this->product = new Product($this->db);
 	}
 
