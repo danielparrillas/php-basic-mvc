@@ -1,4 +1,3 @@
--- Active: 1726760977043@@127.0.0.1@3306@php_mvc
 CREATE DATABASE php_mvc;
 		DEFAULT CHARACTER SET = 'utf8mb4';
 

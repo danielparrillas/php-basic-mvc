@@ -4,10 +4,11 @@ class Database
 	private $host = '127.0.0.1';
 	private $db_name = 'php_mvc';
 	private $username = 'root';
-	private $password = 'brandon.parrillas@ambiente.gob.sv';
+	private $password = 'root';
 	public $conn;
 
-	public function _connect()
+	// Cambiar el nombre de la función a connect() para usar MySQL.
+	public function connect()
 	{
 		$this->conn = null;
 
@@ -21,7 +22,8 @@ class Database
 		return $this->conn;
 	}
 
-	public function connect()
+	// Cambiar el nombre de la función a connect() para usar SQLite.
+	public function ___()
 	{
 		$db_name_example = __DIR__ . '/../database/example.db';
 		try {
