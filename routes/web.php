@@ -70,6 +70,7 @@ switch ($uri) {
 		}
 		break;
 	case '/orders':
+		auth();
 		require_once __DIR__ . '/../app/controllers/OrderController.php';
 		$orderController = new OrderController();
 		switch ($_SERVER['REQUEST_METHOD']) {

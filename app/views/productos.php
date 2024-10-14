@@ -135,6 +135,7 @@ require_once __DIR__ . '/components/header.php';
 						alert('Orden creada exitosamente');
 						cart = [];
 						updateCartView();
+						carritoDialog.close();
 					})
 					.catch(error => {
 						console.error('Error al crear la orden:', error);

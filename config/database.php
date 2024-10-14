@@ -1,6 +1,7 @@
 <?php
 class Database
 {
+	// Cambiar las siguientes variables para usar MySQL.
 	private $host = '127.0.0.1';
 	private $db_name = 'php_mvc';
 	private $username = 'root';
